@@ -1,3 +1,21 @@
+:root {
+    --accuracy: 90%;
+
+    --base: #eff1f5;
+    --mantle: #e6e9ef;
+    --crust: #dce0e8;
+    --surface: #acb0be;
+  
+    --green: #a6d189;
+    --red: #e78284;
+    --sky: #85c1dc;
+    --blue: #8caaee;
+    --purple: #ca9ee6;
+  
+    --text: #4c4f69;
+    --subtext: #5c5f77;
+}
+
 html {
     width: 99.8%;
     height: 99.7%;
@@ -12,15 +30,92 @@ body {
     height: 100%;
     margin: 0px;
 
-    background-color: black;
+    background-color: var(--base);
     font-family: "Golos text", monospace;
-    color: var(--c-text);
+    color: var(--text);
 }
 
 .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     position: relative;
     width: 1500px; 
     height: 750px;
     border-radius: 10px;
-    border: 1px solid white;
+    border: 1px solid var(--subtext);
+}
+
+.stats {
+    position: relative;
+    margin-top: 50px;
+    width: 500px;
+    height: 100px;
+}
+
+.accuracy {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 90px;
+    width: 150px;
+
+    font-size: 50px;
+    text-align: right;
+    line-height: 110px;
+}
+
+.wpm {
+    position: absolute;
+    top: 0;
+    left: 150px;
+    height: 90px;
+    width: 200px;
+
+    font-size: 100px;
+    text-align: center;
+    line-height: 80px;
+}
+
+.words {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 90px;
+    width: 150px;
+
+    font-size: 50px;
+    text-align: left;
+    line-height: 110px;
+}
+
+.accuracy-bar {
+    position: absolute;
+    bottom: 0;
+    background-color: var(--red);
+    height: 10px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.accuracy-bar-inner {
+    background-color: var(--green);
+    height: 10px;
+    width: var(--accuracy);
+    border-radius: 5px;
+}
+
+.type {
+    margin-top: 50px;
+    width: 1000px;
+    height: 150px;
+    background-color: green;
+}
+
+.keyboard {
+    margin-top: 50px;
+    width: 750px;
+    height: 300px;
+    background-color: blue;
 }
