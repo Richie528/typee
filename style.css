@@ -64,6 +64,7 @@ body {
     font-size: 50px;
     text-align: right;
     line-height: 110px;
+    color: var(--subtext);
 }
 
 .wpm {
@@ -88,6 +89,7 @@ body {
     font-size: 50px;
     text-align: left;
     line-height: 110px;
+    color: var(--subtext);
 }
 
 .accuracy-bar {
@@ -107,15 +109,75 @@ body {
 }
 
 .type {
+    position: relative;
     margin-top: 50px;
     width: 1000px;
     height: 150px;
-    background-color: green;
+}
+
+.type-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1000px;
+    height: 150px;
+
+    font-family: monospace;
+    font-size: 50px;
+    color: var(--subtext);
+}
+
+.type-input {
+    background: none;
+    border: none;
+    outline: none;  
+
+    font-family: monospace;
+}
+
+.caret {
+    position: absolute;
+    top: 40px;
+    left: 500px;
+    width: 2px;
+    height: 70px;
+    background-color: var(--subtext);
 }
 
 .keyboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
     margin-top: 50px;
     width: 750px;
     height: 300px;
-    background-color: blue;
+    border-radius: 5px;
+    background-color: var(--crust);
+}
+
+.keyboard-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 18%;
+    background-color: red;
+}
+
+.keyboard-key {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 54px;
+    width: 54px;
+    margin: 0px 3px 0px 3px;
+    background-color: green;
 }
