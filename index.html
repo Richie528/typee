@@ -19,21 +19,32 @@
     <div class="main">
 
         <div class="stats">
-            <div class="accuracy">90%</div>
-            <div class="wpm">120</div>
-            <div class="words">64</div>
+            <div class="accuracy">
+                <span class="accuracy-text">90</span>
+                <span class="accuracy-symbol">%</span>
+            </div>
+            <div class="wpm">
+                <span class="wpm-text">120</span>
+                <span class="wpm-symbol">wpm</span>
+            </div>
+            <div class="words">
+                <span class="words-text">64</span>
+                <span class="words-symbol">words</span>
+            </div>
             <div class="accuracy-bar">
                 <div class="accuracy-bar-inner"></div>
             </div>
         </div>
 
         <div class="type">
-            <input type="text" class="type-input" id="type">
             <div class="caret"></div>
             <div class="type-display">test test test test test test test</div>
+            <input type="text" class="type-input" id="type">
         </div>
 
         <div class="keyboard">
+            <div class="keyboard-key backspace-key">Backspace</div>
+            <div class="keyboard-key shift-key">Shift</div>
             <div class="keyboard-row">
                 <div class="keyboard-key">1</div>
                 <div class="keyboard-key">2</div>
@@ -45,6 +56,8 @@
                 <div class="keyboard-key">8</div>
                 <div class="keyboard-key">9</div>
                 <div class="keyboard-key">0</div>
+                <div class="keyboard-spacer"></div>
+                <div class="keyboard-spacer"></div>
             </div>
             <div class="keyboard-row">
                 <div class="keyboard-key">Q</div>
@@ -57,6 +70,7 @@
                 <div class="keyboard-key">I</div>
                 <div class="keyboard-key">O</div>
                 <div class="keyboard-key">P</div>
+                <div class="keyboard-spacer"></div>
             </div>
             <div class="keyboard-row">
                 <div class="keyboard-key">A</div>
@@ -68,12 +82,21 @@
                 <div class="keyboard-key">J</div>
                 <div class="keyboard-key">K</div>
                 <div class="keyboard-key">L</div>
+                <div class="keyboard-spacer"></div>
             </div>
             <div class="keyboard-row">
-
+                <div class="keyboard-key">Z</div>
+                <div class="keyboard-key">X</div>
+                <div class="keyboard-key">C</div>
+                <div class="keyboard-key">V</div>
+                <div class="keyboard-key">B</div>
+                <div class="keyboard-key">N</div>
+                <div class="keyboard-key">M</div>
+                <div class="keyboard-spacer"></div>
             </div>
             <div class="keyboard-row">
-
+                <div class="keyboard-key" style="width: 500px">Space</div>
+                <div class="keyboard-spacer"></div>
             </div>
         </div>
 
