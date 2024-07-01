@@ -69,7 +69,7 @@ body {
 
 .accuracy-symbol {
     margin-left: -12px;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .wpm {
@@ -85,7 +85,7 @@ body {
 }
 
 .wpm-symbol {
-    margin-left: -25px;
+    margin-left: -22px;
     font-size: 15px;
 }
 
@@ -103,7 +103,7 @@ body {
 }
 
 .words-symbol {
-    margin-left: -15px;
+    margin-left: -12px;
     font-size: 12px;
 }
 
@@ -130,6 +130,23 @@ body {
     height: 75px;
 }
 
+.out-of-focus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1000px;
+    height: 75px;
+    border-radius: 5px;
+
+    font-size: 30px;
+    color: var(--text);
+    background-color: var(--crust);
+}
+
 .type-display {
     display: flex;
     align-items: center;
@@ -147,9 +164,16 @@ body {
 }
 
 .type-input {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1000px;
+    height: 75px;
+
     background: none;
     border: none;
     outline: none;  
+    caret-color: transparent;
 
     font-family: monospace;
 }
@@ -219,7 +243,7 @@ body {
 .shift-key {
     position: absolute;
     top: 203px;
-    left: 38px;
+    left: 37px;
 
     display: flex;
     justify-content: center;
