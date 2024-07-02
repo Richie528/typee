@@ -150,7 +150,7 @@ body {
 .type-display {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
 
     position: absolute;
     top: 0px;
