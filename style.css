@@ -147,20 +147,38 @@ body {
     background-color: var(--crust);
 }
 
-.type-display {
+.typed {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 500px;
+    height: 75px;
+
+    font-family: monospace;
+    font-size: 50px;
+    color: var(--subtext);
+    white-space: pre;
+}
+
+.typee {
     display: flex;
     align-items: center;
     justify-content: left;
 
     position: absolute;
     top: 0px;
-    left: 0px;
-    width: 1000px;
+    left: 500px;
+    width: 500px;
     height: 75px;
 
     font-family: monospace;
     font-size: 50px;
     color: var(--subtext);
+    white-space: pre;
 }
 
 .type-input {

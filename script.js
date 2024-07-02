@@ -12,7 +12,8 @@ let valuesUpper = [
 ];
 
 let hInput = document.getElementById("type");
-let hText = document.querySelector(".type-display");
+let hTyped = document.querySelector(".typed");
+let hTypee = document.querySelector(".typee");
 let hCaret = document.querySelector(".caret");
 let hOutOfFocus = document.querySelector(".out-of-focus");
 let hKeys = document.querySelectorAll(".keyboard-key");
@@ -20,34 +21,65 @@ let hAccuracy = document.querySelector(".accuracy-text");
 let hWpm = document.querySelector(".wpm-text");
 let hWords = document.querySelector(".words-text");
 
-let text = "                              ";
+let typed = "                                   ";
+let typee = "               ";
 let shift = false;
 let accuracy = 1;
 let wpm = 0;
 let words = 0;
 
+function getRandomWord() {
+    randomIndex = Math.floor(Math.random() * wordlist.length);
+    return wordlist[randomIndex];
+}
+
 function displayInput() {
     if (hInput === document.activeElement) {
         hInput.style.visibility = "visible";
-        hText.style.visibility = "visible";
+        hTyped.style.visibility = "visible";
+        hTypee.style.visibility = "visible";
         hCaret.style.visibility = "visible";
         hOutOfFocus.style.visibility = "hidden";
     } else {
         hInput.style.visibility = "hidden";
-        hText.style.visibility = "hidden";
+        hTyped.style.visibility = "hidden";
+        hTypee.style.visibility = "hidden";
         hCaret.style.visibility = "hidden";
         hOutOfFocus.style.visibility = "visible";
     }
 }
 
 function displayText() {
-    hText.textContent = text;
+    hTyped.textContent = typed.substring(20, 40);
+    hTypee.textContent = typee;
+    console.log(typed);
 }
 
 function displayStats() {
     hAccuracy.textContent = (accuracy * 100).toFixed(0);
     hWpm.textContent = wpm;
     hWords.textContent = words;
+}
+
+function initialise() {
+
+}
+
+function run(key) {
+    let input = "";
+    let keyIndex = keys.indexOf(key);
+    if (keyIndex === -1) return;
+    if (key === 8) { // backspace
+        typed = " " + typed.slice(0, -1);
+    } else if (key === 16) { // shift
+        return;
+    } else { // normal key
+        if (shift) input = valuesUpper[keyIndex];
+        if (!shift) input = valuesLower[keyIndex];
+        typed = typed.substring(1);
+        typed = typed + input;
+    }
+    displayText();
 }
 
 function lower() {
@@ -60,22 +92,6 @@ function upper() {
     for (let i = 0; i < hKeys.length; i++) {
         hKeys[i].textContent = valuesUpper[i];
     }
-}
-
-function run(key) {
-    let input = "";
-    let keyIndex = keys.indexOf(key);
-    if (keyIndex === -1) return;
-    if (shift) input = valuesUpper[keyIndex];
-    if (!shift) input = valuesLower[keyIndex];
-
-    text = text.substring(1);
-    text = text.substring(0, 14) + input + text.substring(15);
-
-    console.log(text);
-    displayText();
-
-    console.log(input);
 }
 
 function down(key) {
