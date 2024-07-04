@@ -21,12 +21,21 @@ let hAccuracy = document.querySelector(".accuracy-text");
 let hWpm = document.querySelector(".wpm-text");
 let hWords = document.querySelector(".words-text");
 
-let typed = "                                    ";
+let typed = [];
+for (let i = 0; i < 36; i++) typed.push(createSpan(" ", false));
+// let typed = "                                    ";
 let typee = "        ";
 let shift = false;
 let accuracy = 1;
 let wpm = 0;
 let words = 0;
+
+function createSpan(letter, correct) {
+    let span = document.createElement("span");
+    if (!correct) span.classList.add("incorrect");
+    span.textContent = letter;
+    return span;
+}
 
 function getRandomWord() {
     randomIndex = Math.floor(Math.random() * wordlist.length);
@@ -50,7 +59,11 @@ function displayInput() {
 }
 
 function displayText() {
-    hTyped.textContent = typed.substring(18, 36);
+    hTyped.innerHTML = ``;
+    for (let i = 18; i < 36; i++) {
+        console.log(typed[i]);
+        hTyped.appendChild(typed[i]);
+    }
     hTypee.textContent = typee.substring(9, 27);
 }
 
@@ -104,7 +117,7 @@ function run(key) {
     let keyIndex = keys.indexOf(key);
     if (keyIndex === -1) return;
     if (key === 8) { // backspace
-        typed = " " + typed.slice(0, -1);
+        typed = [createSpan(" ", false), ...typed.slice(0, -1)];
         typee = " " + typee;
     } else if (key === 16) { // shift
         return;
@@ -112,17 +125,15 @@ function run(key) {
         if (shift) input = valuesUpper[keyIndex];
         if (!shift) input = valuesLower[keyIndex];
 
-        console.log(typee[9]);
-        console.log(input);
-
         if (typee[9] === input) { // correct
-            console.log("correct");
+            typed = typed.slice(1);
+            typed.push(createSpan(input, true));
         } else { // incorrect
-            console.log("wrong");
+            typed = typed.slice(1);
+            typed.push(createSpan(input, false));
         }
 
-        typed = typed.substring(1);
-        typed = typed + input;
+
 
         while (typee.length < 40) {
             typee += " " + getRandomWord();
@@ -130,6 +141,7 @@ function run(key) {
         typee = typee.substring(1);
     }
     displayText();
+    console.log(typed);
 }
 
 document.addEventListener("click", function() {

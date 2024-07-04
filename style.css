@@ -181,11 +181,7 @@ body {
     white-space: pre;
 }
 
-.correct {
-    color: var(--green);
-}
-
-.wrong {
+.incorrect {
     color: var(--red);
 }
 
