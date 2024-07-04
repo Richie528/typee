@@ -20,15 +20,21 @@ let hKeys = document.querySelectorAll(".keyboard-key");
 let hAccuracy = document.querySelector(".accuracy-text");
 let hWpm = document.querySelector(".wpm-text");
 let hWords = document.querySelector(".words-text");
+let hBar = document.querySelector(".accuracy-bar");
+let hBarInner = document.querySelector(".accuracy-bar-inner");
 
 let typed = [];
 for (let i = 0; i < 36; i++) typed.push(createSpan(" ", false));
-// let typed = "                                    ";
 let typee = "        ";
 let shift = false;
-let accuracy = 1;
+
+let timer = false;
+let time = 0;
+let accuracy = 0;
 let wpm = 0;
 let words = 0;
+let letters = 0;
+let numCorrect = 0;
 
 function createSpan(letter, correct) {
     let span = document.createElement("span");
@@ -49,28 +55,42 @@ function displayInput() {
         hTypee.style.visibility = "visible";
         hCaret.style.visibility = "visible";
         hOutOfFocus.style.visibility = "hidden";
+        if (!timer) {
+            timer = setInterval(function() {
+                time += 1;
+                updateStats();
+            }, 1000);
+        }
     } else {
         hInput.style.visibility = "hidden";
         hTyped.style.visibility = "hidden";
         hTypee.style.visibility = "hidden";
         hCaret.style.visibility = "hidden";
         hOutOfFocus.style.visibility = "visible";
+        clearInterval(timer);
+        timer = false;
     }
 }
 
 function displayText() {
     hTyped.innerHTML = ``;
     for (let i = 18; i < 36; i++) {
-        console.log(typed[i]);
         hTyped.appendChild(typed[i]);
     }
     hTypee.textContent = typee.substring(9, 27);
 }
 
 function displayStats() {
-    hAccuracy.textContent = (accuracy * 100).toFixed(0);
-    hWpm.textContent = wpm;
+    hAccuracy.textContent = (accuracy).toFixed(0);
+    hWpm.textContent = wpm.toFixed(0);
     hWords.textContent = words;
+    hBarInner.style.width = accuracy.toFixed(0) + "%";
+}
+
+function updateStats() {
+    wpm = words / time * 60;
+    accuracy = numCorrect / letters * 100;
+    displayStats();
 }
 
 function initialise() {
@@ -125,23 +145,25 @@ function run(key) {
         if (shift) input = valuesUpper[keyIndex];
         if (!shift) input = valuesLower[keyIndex];
 
+        letters += 1;
         if (typee[9] === input) { // correct
             typed = typed.slice(1);
             typed.push(createSpan(input, true));
+            numCorrect += 1;
         } else { // incorrect
             typed = typed.slice(1);
             typed.push(createSpan(input, false));
         }
 
-
-
         while (typee.length < 40) {
             typee += " " + getRandomWord();
         }
         typee = typee.substring(1);
+
+        if (typee[9] === " ") words += 1;
     }
     displayText();
-    console.log(typed);
+    updateStats();
 }
 
 document.addEventListener("click", function() {
@@ -166,3 +188,4 @@ hInput.onkeyup = function(e) {
 
 initialise();
 displayInput();
+updateStats();
