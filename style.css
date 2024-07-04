@@ -13,7 +13,7 @@
     --purple: #ca9ee6;
   
     --text: #4c4f69;
-    --subtext: #5c5f77;
+    --subtext: #787b91;
 }
 
 html {
@@ -160,7 +160,7 @@ body {
 
     font-family: monospace;
     font-size: 50px;
-    color: var(--subtext);
+    color: var(--text);
     white-space: pre;
 }
 
@@ -179,6 +179,14 @@ body {
     font-size: 50px;
     color: var(--subtext);
     white-space: pre;
+}
+
+.correct {
+    color: var(--green);
+}
+
+.wrong {
+    color: var(--red);
 }
 
 .type-input {
