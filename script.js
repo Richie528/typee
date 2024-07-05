@@ -78,10 +78,10 @@ function displayTheme() {
 
 function displayInput() {
     if (hInput === document.activeElement) {
-        hInput.style.visibility = "visible";
-        hTyped.style.visibility = "visible";
-        hTypee.style.visibility = "visible";
-        hCaret.style.visibility = "visible";
+        // hInput.style.visibility = "visible";
+        // hTyped.style.visibility = "visible";
+        // hTypee.style.visibility = "visible";
+        // hCaret.style.visibility = "visible";
         hOutOfFocus.style.visibility = "hidden";
         if (!timer) {
             timer = setInterval(function() {
@@ -90,10 +90,10 @@ function displayInput() {
             }, 1000);
         }
     } else {
-        hInput.style.visibility = "hidden";
-        hTyped.style.visibility = "hidden";
-        hTypee.style.visibility = "hidden";
-        hCaret.style.visibility = "hidden";
+        // hInput.style.visibility = "hidden";
+        // hTyped.style.visibility = "hidden";
+        // hTypee.style.visibility = "hidden";
+        // hCaret.style.visibility = "hidden";
         hOutOfFocus.style.visibility = "visible";
         clearInterval(timer);
         timer = false;

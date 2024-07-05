@@ -156,10 +156,23 @@ body {
     width: 1000px;
     height: 75px;
     border-radius: 5px;
+}
 
+.out-of-focus-text {
+    z-index: 1;
     font-size: 30px;
     color: var(--text);
+    opacity: 100%;
+}
+
+.out-of-focus-background {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
     background-color: var(--crust);
+    backdrop-filter: blur(100px);
+    opacity: 50%;
 }
 
 .typed {
