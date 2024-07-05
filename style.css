@@ -6,12 +6,9 @@
   
     --green: #a6d189;
     --red: #e78284;
-    --sky: #85c1dc;
-    --blue: #8caaee;
-    --purple: #ca9ee6;
   
     --text: #4c4f69;
-    --subtext: #787b91;
+    --subtext: #8f91a0;
 }
 
 html {
@@ -46,10 +43,30 @@ body {
     border: 1px solid var(--subtext);
 }
 
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+    font-size: 30px;
+    color: var(--subtext);
+    background-color: var(--crust);
+}
+
+.theme-toggle:hover {
+    cursor: pointer;
+}
+
 .stats {
     position: relative;
     width: 500px;
     height: 100px;
+    margin-top: 20px;
 }
 
 .accuracy {

@@ -11,6 +11,11 @@ let valuesUpper = [
     "Backspace", "Shift", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Z", "X", "C", "V", "B", "N", "M", " "
 ];
 
+let lightMode = ["#eff1f5", "#e6e9ef", "#dce0e8", "#acb0be", "#a6d189", "#e78284", "#4c4f69", "#8f91a0"];
+let darkMode = ["#1e1e2e", "#181825", "#11111b", "#313244", "#a6d189", "#e78284", "#cdd6f4", "#98a0bc"];
+
+let hRoot = document.querySelector(":root");
+let hThemeToggle = document.querySelector(".theme-toggle");
 let hInput = document.getElementById("type");
 let hTyped = document.querySelector(".typed");
 let hTypee = document.querySelector(".typee");
@@ -26,6 +31,7 @@ let hBarInner = document.querySelector(".accuracy-bar-inner");
 let typed = []; for (let i = 0; i < 36; i++) typed.push(createSpan(" ", false));
 let typee = "        ";
 let shift = false;
+let theme = 1;
 
 let timer = false;
 let time = 0;
@@ -45,6 +51,29 @@ function createSpan(letter, correct) {
 function getRandomWord() {
     randomIndex = Math.floor(Math.random() * wordlist.length);
     return wordlist[randomIndex];
+}
+
+function displayTheme() {
+    let mode = [];
+    if (theme === 0) mode = [...darkMode];
+    if (theme === 1) mode = [...lightMode];
+
+    hRoot.style.setProperty("--base", mode[0]);
+    hRoot.style.setProperty("--mantle", mode[1]);
+    hRoot.style.setProperty("--crust", mode[2]);
+    hRoot.style.setProperty("--surface", mode[3]);
+    hRoot.style.setProperty("--green", mode[4]);
+    hRoot.style.setProperty("--red", mode[5]);
+    hRoot.style.setProperty("--text", mode[6]);
+    hRoot.style.setProperty("--subtext", mode[7]);
+
+    if (theme === 0) {
+        hThemeToggle.children[0].classList.remove("fa-sun");
+        hThemeToggle.children[0].classList.add("fa-moon");
+    } else {
+        hThemeToggle.children[0].classList.remove("fa-moon");
+        hThemeToggle.children[0].classList.add("fa-sun");
+    }
 }
 
 function displayInput() {
@@ -202,6 +231,11 @@ hInput.onkeydown = function(e) {
 
 hInput.onkeyup = function(e) {
     up(e.keyCode);
+}
+
+hThemeToggle.onclick = function() {
+    theme = (theme === 0) ? 1 : 0;
+    displayTheme();
 }
 
 initialise();
