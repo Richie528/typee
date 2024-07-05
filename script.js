@@ -23,8 +23,7 @@ let hWords = document.querySelector(".words-text");
 let hBar = document.querySelector(".accuracy-bar");
 let hBarInner = document.querySelector(".accuracy-bar-inner");
 
-let typed = [];
-for (let i = 0; i < 36; i++) typed.push(createSpan(" ", false));
+let typed = []; for (let i = 0; i < 36; i++) typed.push(createSpan(" ", false));
 let typee = "        ";
 let shift = false;
 
@@ -152,7 +151,7 @@ function run(key) {
             numCorrect += 1;
         } else { // incorrect
             typed = typed.slice(1);
-            typed.push(createSpan(input, false));
+            typed.push(createSpan(typee[9], false));
         }
 
         while (typee.length < 40) {
@@ -160,7 +159,7 @@ function run(key) {
         }
         typee = typee.substring(1);
 
-        if (typee[9] === " ") words += 1;
+        if (typee[8] === " ") words += 1;
     }
     displayText();
     updateStats();
