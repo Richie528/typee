@@ -90,6 +90,7 @@ function updateStats() {
     wpm = words / time * 60;
     accuracy = numCorrect / letters * 100;
     displayStats();
+    console.log(time);
 }
 
 function initialise() {
@@ -135,12 +136,20 @@ function run(key) {
     let input = "";
     let keyIndex = keys.indexOf(key);
     if (keyIndex === -1) return;
+
     if (key === 8) { // backspace
+        // if (typed.slice(-1) === createSpan(" ", false)) return;
+        if (typed.slice(-1)[0].textContent === " ") return;
+
         typed = [createSpan(" ", false), ...typed.slice(0, -1)];
         typee = " " + typee;
-    } else if (key === 16) { // shift
+    }
+
+    else if (key === 16) { // shift
         return;
-    } else { // normal key
+    } 
+
+    else { // normal key
         if (shift) input = valuesUpper[keyIndex];
         if (!shift) input = valuesLower[keyIndex];
 
@@ -161,6 +170,7 @@ function run(key) {
 
         if (typee[8] === " ") words += 1;
     }
+
     displayText();
     updateStats();
 }
