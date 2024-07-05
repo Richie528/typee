@@ -1,2 +1,2 @@
-#Typee
+# Typee
 a typing tester
