@@ -9,6 +9,8 @@
   
     --text: #4c4f69;
     --subtext: #8f91a0;
+    
+    --oof: rgba(185, 193, 209, 0.5);
 }
 
 html {
@@ -170,9 +172,8 @@ body {
     height: 100%;
     width: 100%;
     border-radius: 5px;
-    background-color: var(--crust);
-    backdrop-filter: blur(100px);
-    opacity: 50%;
+    background-color: var(--oof);
+    backdrop-filter: blur(1px);
 }
 
 .typed {

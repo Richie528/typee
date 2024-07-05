@@ -11,8 +11,8 @@ let valuesUpper = [
     "Backspace", "Shift", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Z", "X", "C", "V", "B", "N", "M", " "
 ];
 
-let lightMode = ["#eff1f5", "#e6e9ef", "#dce0e8", "#acb0be", "#a6d189", "#e78284", "#4c4f69", "#8f91a0"];
-let darkMode = ["#1e1e2e", "#181825", "#11111b", "#313244", "#a6d189", "#e78284", "#cdd6f4", "#98a0bc"];
+let lightMode = ["#eff1f5", "#e6e9ef", "#dce0e8", "#acb0be", "#a6d189", "#e78284", "#4c4f69", "#8f91a0", "rgba(185, 193, 209, 0.5)"];
+let darkMode = ["#1e1e2e", "#181825", "#11111b", "#313244", "#a6d189", "#e78284", "#cdd6f4", "#98a0bc", "rgba(50, 50, 70, 0.5)"];
 
 let hRoot = document.querySelector(":root");
 let hThemeToggle = document.querySelector(".theme-toggle");
@@ -66,6 +66,7 @@ function displayTheme() {
     hRoot.style.setProperty("--red", mode[5]);
     hRoot.style.setProperty("--text", mode[6]);
     hRoot.style.setProperty("--subtext", mode[7]);
+    hRoot.style.setProperty("--oof", mode[8]);
 
     if (theme === 0) {
         hThemeToggle.children[0].classList.remove("fa-sun");
@@ -78,10 +79,6 @@ function displayTheme() {
 
 function displayInput() {
     if (hInput === document.activeElement) {
-        // hInput.style.visibility = "visible";
-        // hTyped.style.visibility = "visible";
-        // hTypee.style.visibility = "visible";
-        // hCaret.style.visibility = "visible";
         hOutOfFocus.style.visibility = "hidden";
         if (!timer) {
             timer = setInterval(function() {
@@ -90,10 +87,6 @@ function displayInput() {
             }, 1000);
         }
     } else {
-        // hInput.style.visibility = "hidden";
-        // hTyped.style.visibility = "hidden";
-        // hTypee.style.visibility = "hidden";
-        // hCaret.style.visibility = "hidden";
         hOutOfFocus.style.visibility = "visible";
         clearInterval(timer);
         timer = false;
@@ -122,7 +115,6 @@ function updateStats() {
     wpm = words / time * 60;
     accuracy = numCorrect / letters * 100;
     displayStats();
-    console.log(time);
 }
 
 function initialise() {
@@ -165,6 +157,12 @@ function up(key) {
 }
 
 function run(key) {
+    if (key === 27) {
+        hInput.blur();
+        displayInput();
+        return;
+    }
+
     let input = "";
     let keyIndex = keys.indexOf(key);
     if (keyIndex === -1) return;
@@ -216,6 +214,13 @@ function run(key) {
 document.addEventListener("click", function() {
     displayInput();
 });
+
+document.onkeydown = function(e) {
+    if (e.keyCode === 13) {
+        hInput.focus();
+        displayInput();
+    }
+}
 
 hOutOfFocus.onclick = function() {
     hInput.style.visibility = "visible";
