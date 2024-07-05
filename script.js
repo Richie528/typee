@@ -84,6 +84,9 @@ function displayStats() {
     hWpm.textContent = wpm.toFixed(0);
     hWords.textContent = words;
     hBarInner.style.width = accuracy.toFixed(0) + "%";
+
+    if (Number.isNaN(accuracy)) hAccuracy.textContent = "--";
+    if (Number.isNaN(wpm)) hWpm.textContent = "--";
 }
 
 function updateStats() {
@@ -137,38 +140,44 @@ function run(key) {
     let keyIndex = keys.indexOf(key);
     if (keyIndex === -1) return;
 
-    if (key === 8) { // backspace
-        // if (typed.slice(-1) === createSpan(" ", false)) return;
-        if (typed.slice(-1)[0].textContent === " ") return;
+    if (key === 16) return; // SHIFT
 
+    else if (key === 8) { // BACKSPACE
+        if (typed.slice(-1)[0].textContent === " ") return;
         typed = [createSpan(" ", false), ...typed.slice(0, -1)];
         typee = " " + typee;
     }
 
-    else if (key === 16) { // shift
-        return;
-    } 
-
-    else { // normal key
+    else { // NORMAL KEY
         if (shift) input = valuesUpper[keyIndex];
         if (!shift) input = valuesLower[keyIndex];
 
-        letters += 1;
         if (typee[9] === input) { // correct
             typed = typed.slice(1);
             typed.push(createSpan(input, true));
-            numCorrect += 1;
-        } else { // incorrect
+            typee = typee.substring(1);
+            letters += 1; numCorrect += 1;
+        } 
+        else { // incorrect
             typed = typed.slice(1);
             typed.push(createSpan(typee[9], false));
+            typee = typee.substring(1);
+            letters += 1;
         }
+
+        if (input === " ") {
+            while (typed[35].textContent != " ") {
+                typed = typed.slice(1);
+                typed.push(createSpan(typee[9], false));
+                typee = typee.substring(1);
+            }
+        }
+
+        if (typed[35].textContent === " ") words += 1;
 
         while (typee.length < 40) {
             typee += " " + getRandomWord();
         }
-        typee = typee.substring(1);
-
-        if (typee[8] === " ") words += 1;
     }
 
     displayText();
